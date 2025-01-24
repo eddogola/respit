@@ -1,7 +1,6 @@
 import { OpenAI } from 'openai';
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
-import { PlayIcon, PauseIcon, SpeakerWaveIcon as VolumeIcon } from '@heroicons/react/24/solid';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
