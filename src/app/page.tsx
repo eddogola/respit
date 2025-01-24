@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { SignUpButton, useAuth } from "@clerk/nextjs";
 import Map, { Marker, Source, Layer, LayerProps, Popup, useMap } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { ChevronLeftIcon, ChevronRightIcon, SpeakerWaveIcon, SpeakerXMarkIcon, PlayIcon, PauseIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon, PlayIcon, PauseIcon } from "@heroicons/react/24/outline";
 
 // Add this helper function to create the route GeoJSON
 const createRouteGeoJSON = (tripData: any) => {
@@ -97,7 +97,6 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
   const [volume, setVolume] = useState(1);
   const audioRef = useRef<HTMLAudioElement | null>(null);
