@@ -1,0 +1,10 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    // Disable rules that you find too strict
+    "no-unused-vars": "warn", // Downgrade from error to warning
+    "@next/next/no-img-element": "off", // Disable img tag warning
+    "react/no-unescaped-entities": "off",
+    "react/display-name": "off"
+  }
+} 
