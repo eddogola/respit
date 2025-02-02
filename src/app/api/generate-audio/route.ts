@@ -40,8 +40,9 @@ export async function POST(req: Request) {
             content: prompt 
         }
         ],
-      model: "gpt-4o",
-      temperature: 0.7,
+      // model: "gpt-4o",
+      model: "o1",
+      // temperature: 0.7,
     });
 
     // Get the text content from OpenAI response
