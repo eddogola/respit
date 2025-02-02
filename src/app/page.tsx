@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from "react";
-import { SignUpButton, useAuth } from "@clerk/nextjs";
+import { SignUpButton, SignOutButton, useAuth } from "@clerk/nextjs";
 import Map, { Marker, Source, Layer, LayerProps, Popup } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { 
@@ -102,7 +102,7 @@ export default function Home() {
   } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState<Waypoint | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const mapRef = useRef<any>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -382,7 +382,7 @@ export default function Home() {
           initialViewState={{
             longitude: -98,
             latitude: 39,
-            zoom: 3,
+            zoom: 4,
             pitch: 45,
             bearing: 0
           }}
@@ -517,7 +517,7 @@ export default function Home() {
       {/* Left Sidebar with glassmorphism */}
       <div
         className={`fixed top-0 left-0 h-full z-20 transition-transform duration-500 ease-in-out
-        ${isSidebarOpen ? 'w-80 translate-x-0' : 'w-80 -translate-x-full'}
+        ${isSidebarOpen ? 'w-60 translate-x-0' : 'w-60 -translate-x-full'}
         backdrop-blur-sm bg-black/30 shadow-xl`}
       >
         {/* Toggle button */}
@@ -535,15 +535,30 @@ export default function Home() {
         {/* Sidebar content */}
         {isSidebarOpen && (
           <div className="p-6 h-full flex flex-col text-white">
+            {/* Icon */}
+            <div className="mt-16 mb-16 flex justify-center">
+              <img 
+                src="/icon.svg" 
+                alt="Respit Logo" 
+                className="w-16 h-16 invert"
+              />
+            </div>
+
             {/* Top buttons section */}
             <div className="space-y-4 mb-8">
-              {!isSignedIn && (
+              {!isSignedIn ? (
                 <SignUpButton mode="modal">
                   <button className="w-full flex items-center justify-center px-6 py-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors">
                     <UserPlusIcon className="w-5 h-5 mr-2" />
                     Sign Up
                   </button>
                 </SignUpButton>
+              ) : (
+                <SignOutButton>
+                  <button className="w-full flex items-center justify-center px-6 py-2 bg-white/20 backdrop-blur-sm rounded-lg hover:bg-white/30 transition-colors">
+                    Sign Out
+                  </button>
+                </SignOutButton>
               )}
               
               <button
@@ -555,38 +570,38 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Trip details section */}
-            {tripData && (
-              <div className="space-y-4">
-                <h2 className="text-lg font-medium text-white/90">Trip Stops</h2>
-                
-                {/* Start Location */}
-                <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-green-500 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-white/90">{tripData.startLocation.name}</h3>
-                      <p className="text-sm text-white/70">Starting Point</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Waypoints */}
-                {tripData.waypoints.map((waypoint, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+              {/* Trip details section */}
+              {tripData && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-medium text-white/90">Trip Stops</h2>
+                  
+                  {/* Start Location */}
+                  <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                        waypoint.type === 'scenic' ? 'bg-blue-500' : 
-                        waypoint.type === 'historic' ? 'bg-yellow-500' : 
-                        'bg-purple-500'
-                      }`} />
+                      <div className="w-3 h-3 rounded-full bg-green-500 flex-shrink-0" />
                       <div>
-                        <h3 className="font-medium text-white/90">{waypoint.name}</h3>
-                        <p className="text-sm text-white/70 capitalize">{waypoint.type}</p>
+                        <h3 className="font-medium text-white/90">{tripData.startLocation.name}</h3>
+                        <p className="text-sm text-white/70">Starting Point</p>
                       </div>
                     </div>
                   </div>
-                ))}
+
+                  {/* Waypoints */}
+                  {tripData.waypoints.map((waypoint, index) => (
+                    <div key={index} className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
+                          waypoint.type === 'scenic' ? 'bg-blue-500' : 
+                          waypoint.type === 'historic' ? 'bg-yellow-500' : 
+                          'bg-purple-500'
+                        }`} />
+                        <div>
+                          <h3 className="font-medium text-white/90">{waypoint.name}</h3>
+                          <p className="text-sm text-white/70 capitalize">{waypoint.type}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
 
                 {/* End Location */}
                 <div className="bg-white/10 backdrop-blur-sm p-3 rounded-lg">
