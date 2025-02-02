@@ -536,7 +536,7 @@ export default function Home() {
         {isSidebarOpen && (
           <div className="p-6 h-full flex flex-col text-white">
             {/* Icon */}
-            <div className="mt-16 mb-16 flex justify-center">
+            <div className="mt-8 mb-16 flex justify-center">
               <img 
                 src="/icon.svg" 
                 alt="Respit Logo" 

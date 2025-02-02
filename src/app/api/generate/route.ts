@@ -43,8 +43,8 @@ export async function POST(request: Request) {
                     }
                 }`
             }],
-            // model: "gpt-4o",
-            model: "o1",
+            model: "gpt-4o",
+            // model: "o1",
             response_format: { type: "json_object" }
         });
 
