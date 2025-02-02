@@ -41,6 +41,7 @@ export async function POST(req: Request) {
         }
         ],
       model: "gpt-4o",
+      // model: "o1",
       temperature: 0.7,
     });
 
