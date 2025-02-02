@@ -681,19 +681,34 @@ export default function Home() {
             value={volume}
             onChange={handleVolumeChange}
             className="w-32 h-1 rounded-full appearance-none cursor-pointer 
-              bg-gradient-to-r from-emerald-500 to-emerald-300
+              bg-gray-600/40
+              [&::-webkit-slider-runnable-track]:bg-gray-600/40
+              [&::-moz-range-track]:bg-gray-600/40
+              relative
+              before:absolute before:top-0 before:left-0 before:h-full
+              before:bg-emerald-500 before:rounded-full
+              before:[width:calc(100%*var(--value-percent))]
               [&::-webkit-slider-thumb]:appearance-none 
               [&::-webkit-slider-thumb]:w-2.5 
               [&::-webkit-slider-thumb]:h-2.5 
               [&::-webkit-slider-thumb]:bg-white 
               [&::-webkit-slider-thumb]:rounded-full 
               [&::-webkit-slider-thumb]:mt-[-3px]
+              [&::-webkit-slider-thumb]:relative
+              [&::-webkit-slider-thumb]:z-10
+              [&::-webkit-slider-thumb]:transition-transform
+              [&::-webkit-slider-thumb]:hover:scale-110
               [&::-moz-range-thumb]:appearance-none 
               [&::-moz-range-thumb]:w-2.5 
               [&::-moz-range-thumb]:h-2.5 
               [&::-moz-range-thumb]:bg-white 
               [&::-moz-range-thumb]:rounded-full 
-              [&::-moz-range-thumb]:border-0"
+              [&::-moz-range-thumb]:border-0
+              [&::-moz-range-thumb]:relative
+              [&::-moz-range-thumb]:z-10
+              [&::-moz-range-thumb]:transition-transform
+              [&::-moz-range-thumb]:hover:scale-110"
+            style={{ '--value-percent': volume } as any}
           />
         </div>
       </div>
