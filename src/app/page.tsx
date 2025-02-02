@@ -621,7 +621,7 @@ export default function Home() {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col min-h-screen pointer-events-none">
-        <div className="flex-1 flex items-center justify-center mb-24">
+        <div className="flex-1 flex items-center justify-center mb-96">
           <main className="max-w-2xl mx-auto p-8 backdrop-blur-sm bg-black/30 rounded-lg shadow-xl text-white pointer-events-auto">
             <h1 className="text-4xl font-bold mb-6 text-center">Plan Your Adventure</h1>
             <div className="space-y-6">
